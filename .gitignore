@@ -1,0 +1,12 @@
+/node_modules
+/vendor
+.env
+.phpunit.result.cache
+npm-debug.log
+yarn-error.log
+/.idea
+/.vscode
+*/.DS_Store
+.DS_Store
+package-lock.json
+composer.lock
