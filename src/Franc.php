@@ -2,7 +2,7 @@
 
 namespace App;
 
-class Dollar
+class Franc
 {
     private int $amount;
 
@@ -11,12 +11,12 @@ class Dollar
         $this->amount = $amount;
     }
 
-    public function times(int $multiplier): Dollar
+    public function times(int $multiplier): Franc
     {
-      return new Dollar($this->amount * $multiplier);
+      return new Franc($this->amount * $multiplier);
     }
 
-    public function equals(Dollar $object): bool
+    public function equals(Franc $object): bool
     {
         return $this->amount == $object->amount;
     }
