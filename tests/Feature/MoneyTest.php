@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Bank;
 use App\Money;
 use PHPUnit\Framework\TestCase;
 
@@ -13,6 +14,16 @@ class MoneyTest extends TestCase
         $five = Money::dollar(5);
         $this->assertEquals(Money::dollar(10), $five->times(2));
         $this->assertEquals(Money::dollar(15), $five->times(3));
+    }
+
+    /** @test */
+    public function addition()
+    {
+        $five = Money::dollar(5);
+        $sum = $five->plus($five);
+        $bank = new Bank();
+        $reduced = $bank->reduce($sum, 'USD');
+        $this->assertEquals(Money::dollar(10), $reduced);
     }
 
     /** @test */
