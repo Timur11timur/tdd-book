@@ -4,7 +4,7 @@ namespace App;
 
 class Money implements Expression
 {
-    protected int $amount;
+    public int $amount;
 
     protected string $currency;
 
@@ -36,11 +36,16 @@ class Money implements Expression
 
     public function plus(Money $addend): Expression
     {
-        return new Money($this->amount + $addend->amount, $this->currency);
+        return new Sum($this, $addend);
     }
 
     public function currency(): string
     {
         return $this->currency;
+    }
+
+    public function reduce(string $to): self
+    {
+        return $this;
     }
 }
