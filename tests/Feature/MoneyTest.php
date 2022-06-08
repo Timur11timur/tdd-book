@@ -83,4 +83,39 @@ class MoneyTest extends TestCase
     {
         $this->assertEquals(1, (new Bank())->rate('USD', 'USD'));
     }
+
+    /** @test */
+    public function mixed_addition()
+    {
+        $fiveBucks = Money::dollar(5);
+        $tenFrancs = Money::franc(10);
+        $bank = new Bank();
+        $bank->addRate('CHF', 'USD', 2);
+        $result = $bank->reduce($fiveBucks->plus($tenFrancs), 'USD');
+        $this->assertEquals(Money::dollar(10), $result);
+    }
+
+    /** @test */
+    public function sum_plus_money()
+    {
+        $fiveBucks = Money::dollar(5);
+        $tenFrancs = Money::franc(10);
+        $bank = new Bank();
+        $bank->addRate('CHF', 'USD', 2);
+        $sum = (new Sum($fiveBucks, $tenFrancs))->plus($fiveBucks);
+        $result = $bank->reduce($sum, 'USD');
+        $this->assertEquals(Money::dollar(15), $result);
+    }
+
+    /** @test */
+    public function sum_times()
+    {
+        $fiveBucks = Money::dollar(5);
+        $tenFrancs = Money::franc(10);
+        $bank = new Bank();
+        $bank->addRate('CHF', 'USD', 2);
+        $sum = (new Sum($fiveBucks, $tenFrancs))->times(2);
+        $result = $bank->reduce($sum, 'USD');
+        $this->assertEquals(Money::dollar(20), $result);
+    }
 }

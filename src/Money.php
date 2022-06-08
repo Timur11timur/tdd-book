@@ -4,9 +4,9 @@ namespace App;
 
 class Money implements Expression
 {
-    public int $amount;
+    private int $amount;
 
-    protected string $currency;
+    private string $currency;
 
     public function __construct(int $amount, string $currency)
     {
@@ -14,9 +14,13 @@ class Money implements Expression
         $this->currency = $currency;
     }
 
-    public function equals(Money $object): bool
+    public function __get(string $name): ?int
     {
-        return ($this->amount == $object->amount) && ($this->currency == $object->currency);
+        if (isset($this->$name)) {
+            return $this->$name;
+        }
+
+        return null;
     }
 
     static public function dollar(int $amount): Money
@@ -26,15 +30,20 @@ class Money implements Expression
 
     static public function franc(int $amount): Money
     {
-      return new Money($amount, 'CHF');
+        return new Money($amount, 'CHF');
     }
 
-    public function times(int $multiplier): Money
+    public function equals(Money $object): bool
+    {
+        return ($this->amount == $object->amount) && ($this->currency == $object->currency);
+    }
+
+    public function times(int $multiplier): Expression
     {
         return new Money($this->amount * $multiplier, $this->currency);
     }
 
-    public function plus(Money $addend): Expression
+    public function plus(Expression $addend): Expression
     {
         return new Sum($this, $addend);
     }
