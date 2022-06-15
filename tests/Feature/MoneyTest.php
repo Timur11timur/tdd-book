@@ -2,9 +2,9 @@
 
 namespace Tests\Feature;
 
-use App\Bank;
-use App\Money;
-use App\Sum;
+use App\Money\Bank;
+use App\Money\Money;
+use App\Money\Sum;
 use PHPUnit\Framework\TestCase;
 
 class MoneyTest extends TestCase

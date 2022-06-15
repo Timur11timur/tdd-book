@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Money;
 
 class Money implements Expression
 {
