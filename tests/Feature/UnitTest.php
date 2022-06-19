@@ -2,7 +2,7 @@
 
 namespace Tests\Feature;
 
-use App\Unit\WasRun;
+use App\xUnit\WasRun;
 use PHPUnit\Framework\TestCase;
 
 class UnitTest extends TestCase

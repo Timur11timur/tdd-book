@@ -1,20 +1,15 @@
 <?php
 
-namespace App\Unit;
+namespace App\xUnit;
 
-class WasRun
+class WasRun extends TestCase
 {
     public bool $wasRun;
-    public $pass;
 
     public function __construct(string $name)
     {
         $this->wasRun = false;
-    }
-
-    public function run()
-    {
-        $this->testMethod();
+        parent::__construct($name);
     }
 
     public function testMethod()
