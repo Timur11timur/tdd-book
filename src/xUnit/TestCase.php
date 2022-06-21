@@ -4,7 +4,6 @@ namespace App\xUnit;
 
 abstract class TestCase
 {
-    protected bool $pass;
     protected string $name;
 
     public function __construct(string $name)
@@ -12,8 +11,13 @@ abstract class TestCase
         $this->name = $name;
     }
 
+    public function setUp(): void
+    {
+    }
+
     public function run()
     {
+        $this->setUp();
         $method = $this->name;
         $this->$method();
     }

@@ -7,12 +7,24 @@ use PHPUnit\Framework\TestCase;
 
 class UnitTest extends TestCase
 {
+    private $test;
+
+    public function setUp(): void
+    {
+        $this->test = new WasRun('testMethod');
+    }
+
     /** @test */
     public function test_can_be_run()
     {
-        $test = new WasRun('testMethod');
-        $this->assertFalse($test->wasRun);
-        $test->run();
-        $this->assertTrue($test->wasRun);
+        $this->test->run();
+        $this->assertTrue($this->test->wasRun);
+    }
+
+    /** @test */
+    public function test_set_up()
+    {
+        $this->test->run();
+        $this->assertTrue($this->test->wasSetUp);
     }
 }

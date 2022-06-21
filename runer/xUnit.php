@@ -6,15 +6,27 @@ use App\xUnit\TestCase;
 use App\xUnit\WasRun;
 
 class TestCaseTest extends TestCase {
+    private $test;
+
+    public function setUp(): void
+    {
+        $this->test = new WasRun('testMethod');
+    }
+
     public function testRunning()
     {
-        $test = new WasRun('testMethod');
-        assert(!$test->wasRun);
-        $test->run();
-        assert($test->wasRun);
+        $this->test->run();
+        assert($this->test->wasRun);
+    }
+
+    public function testSetUp()
+    {
+        $this->test->run();
+        assert($this->test->wasSetUp);
     }
 }
 
 (new TestCaseTest('testRunning'))->run();
+(new TestCaseTest('testSetUp'))->run();
 
 
