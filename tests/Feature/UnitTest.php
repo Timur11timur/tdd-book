@@ -16,4 +16,20 @@ class UnitTest extends TestCase
         $this->test->run();
         $this->assertTrue('setUp testMethod tearDown ' === $this->test->log);
     }
+
+    /** @test */
+    public function test_result()
+    {
+        $this->test = new WasRun('testMethod');
+        $result = $this->test->run();
+        $this->assertTrue('1 run, 0 failed' === $result->summary());
+    }
+
+    /** @test */
+    public function test_failed_result()
+    {
+        $this->test = new WasRun('testBrokenMethod');
+        $result = $this->test->run();
+        $this->assertTrue('1 run, 1 failed' === $result->summary());
+    }
 }
