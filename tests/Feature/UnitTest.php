@@ -9,22 +9,11 @@ class UnitTest extends TestCase
 {
     private $test;
 
-    public function setUp(): void
+    /** @test */
+    public function test_template_method()
     {
         $this->test = new WasRun('testMethod');
-    }
-
-    /** @test */
-    public function test_can_be_run()
-    {
         $this->test->run();
-        $this->assertTrue($this->test->wasRun);
-    }
-
-    /** @test */
-    public function test_set_up()
-    {
-        $this->test->run();
-        $this->assertTrue('setUp ' === $this->test->log);
+        $this->assertTrue('setUp testMethod tearDown ' === $this->test->log);
     }
 }
