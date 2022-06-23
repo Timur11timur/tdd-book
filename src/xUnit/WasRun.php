@@ -5,7 +5,7 @@ namespace App\xUnit;
 class WasRun extends TestCase
 {
     public bool $wasRun;
-    public bool $wasSetUp;
+    public string $log;
 
     public function __construct(string $name)
     {
@@ -15,7 +15,7 @@ class WasRun extends TestCase
     public function setUp(): void
     {
         $this->wasRun = false;
-        $this->wasSetUp = true;
+        $this->log = 'setUp ';
     }
 
     public function testMethod()

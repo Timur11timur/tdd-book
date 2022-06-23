@@ -25,6 +25,6 @@ class UnitTest extends TestCase
     public function test_set_up()
     {
         $this->test->run();
-        $this->assertTrue($this->test->wasSetUp);
+        $this->assertTrue('setUp ' === $this->test->log);
     }
 }
