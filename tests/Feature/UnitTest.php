@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\xUnit\TestResult;
 use App\xUnit\WasRun;
 use PHPUnit\Framework\TestCase;
 
@@ -30,6 +31,15 @@ class UnitTest extends TestCase
     {
         $this->test = new WasRun('testBrokenMethod');
         $result = $this->test->run();
+        $this->assertTrue('1 run, 1 failed' === $result->summary());
+    }
+
+    /** @test */
+    public function test_failed_result_formatting()
+    {
+        $result = new TestResult();
+        $result->testStarted();
+        $result->testFailed();
         $this->assertTrue('1 run, 1 failed' === $result->summary());
     }
 }
